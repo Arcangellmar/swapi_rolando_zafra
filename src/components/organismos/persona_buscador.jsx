@@ -2,22 +2,20 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../atomos/loader";
 import PersonaCell from "../moleculas/persona_cell";
 
-function PersonaBuscador({ peoples, onclickCharacter, fetchCharacters }) {
+function PersonaBuscador({ peoples, onclickCharacter, next, hasMore }) {
     return (
         <InfiniteScroll
+            className="min-vh-100"
             dataLength={peoples.length}
             loader= {
                 <Loader />
             }
-            hasMore={true}
-            next = {async () => await fetchCharacters() }
-            scrollableTarget="scrollableDiv"
+            hasMore={hasMore}
+            next={next}
         >
             {
                 peoples.map((character) => (
-                    <div key={character.name} onClick={() => onclickCharacter(character.url)}>
-                        <PersonaCell title={character.name} subtitle={character.birth_year}/>
-                    </div>
+                    <PersonaCell key={character.name} title={character.name} subtitle={character.birth_year} onClick={() => onclickCharacter(character.url)}/>
                     // <li className="list-group-item" onClick={() => onclickCharacter(character.url)} key={character.name}>{character.name}</li>
                 ))
             }

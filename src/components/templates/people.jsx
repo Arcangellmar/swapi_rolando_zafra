@@ -1,45 +1,61 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios';
-import Loader from '../atomos/loader';
 import ErrorText from '../atomos/error_text';
 import PersonaBuscador from '../organismos/persona_buscador';
 
 function Peoples({ onclickCharacter }) {
 
-    const [next, setNext] = useState("https://swapi.dev/api/people/");
-    const [errorApi, setError] = useState("");
     const [peoples, setPeoples] = useState([]);
-    const [isLoading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
+    const [errorApi, setError] = useState("");
+    const [isLoading, setLoading] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
+    const isMounted = useRef(true);
   
     const fetchCharacters = async () => {
       try {
-        
-        console.log(next);
-        const response = await axios.get(next);
+        setLoading(true);
+        console.log(page);
+        const response = await axios.get(`https://swapi.dev/api/people/?page=${page}`);
+        const newData = response.data.results;
 
-        console.log(response);
+        for (const person of newData) {
+          const planetResponse = await axios.get(person.homeworld);
+          // const updatedPerson = await fetchPerson(person);
+          // updatedPeople.push(updatedPerson);
+          console.log(planetResponse.data.name);
+        }
 
-        setNext(response.data.next);
-        setPeoples(response.data.results);
+  
+        setPeoples((peopleAntiguo) => [...peopleAntiguo, ...newData]);
+        setPage((prevPage) => prevPage + 1);
+        setHasMore(newData.length > 0);
       } catch (error) {
         setError(error);
-        console.error('Error fetching data from SWAPI:', error);
       }
+
       setLoading(false);
     };
 
     useEffect(() => {
+      if (isMounted.current) {
         fetchCharacters();
+        isMounted.current = false;
+      }
       }, []);
+
+    const fetchMore = () => {
+      if (!isLoading && hasMore) {
+        fetchCharacters();
+      }
+    };
 
     return (
         <>
             {
-                isLoading 
-                  ? <Loader />
-                  : errorApi
-                    ? <ErrorText />
-                    : <PersonaBduscador peoples={peoples} onclickCharacter={onclickCharacter} fetchCharacters={fetchCharacters}/>
+              errorApi
+              ? <ErrorText />
+              : <PersonaBuscador peoples={peoples} onclickCharacter={onclickCharacter} next={fetchMore} hasMore={hasMore} />
             }
         </>
     );
