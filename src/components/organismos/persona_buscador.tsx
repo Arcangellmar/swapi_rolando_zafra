@@ -21,6 +21,7 @@ const PersonaBuscador: React.FC<PersonaBuscadorProps> = ({ peoples, onclickChara
                         title={character.name}
                         subtitle={(character.speciesResponse == null ? "Sin especie" : character.speciesResponse.data.name) + " from " + character.planetResponse.data.name}
                         onClick={() => onclickCharacter(character.url)}
+                        url={character.url}
                     />
                 ))
             }

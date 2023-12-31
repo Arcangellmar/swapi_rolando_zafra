@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from 'react'
+import { useParams, useOutletContext } from "react-router-dom";
 import axios from 'axios';
 import Loader from '../atomos/loader';
 import PersonaResultado from '../organismos/persona_resultado';
 import LoaderSpinner from '../atomos/loader_spinner';
+import { UserPeopleUrlSelect } from '../paginas/home';
 
-interface PeopleSelectedProps {
-  peopleUrl: string
-}
-
-
-const PeopleSelected: React.FC<PeopleSelectedProps> = ({ peopleUrl }) => {
+const PeopleSelected: React.FC = () => {
+  const {peopleUrlSelec} = UserPeopleUrlSelect();
 
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   const fetchPeople = async () => {
     try{
-      setLoading(true);
+      if (peopleUrlSelec != undefined) {
+        setLoading(true);
 
-      const response = await axios.get(peopleUrl);
-      const newData = response.data;
+        const response = await axios.get(decodeURIComponent(peopleUrlSelec));
+        const newData = response.data;
 
-      newData.vehiclesResponse = [];
+        newData.vehiclesResponse = [];
 
-      for (const vehicle of newData.vehicles) {
-        const vehicleResponse = await axios.get(vehicle);
-        
-        newData.vehiclesResponse.push(vehicleResponse.data);
+        for (const vehicle of newData.vehicles) {
+          const vehicleResponse = await axios.get(vehicle);
+          
+          newData.vehiclesResponse.push(vehicleResponse.data);
+        }
+
+        setData(newData);
       }
-
-      setData(newData);
 
     }
     catch(error){
@@ -41,15 +41,15 @@ const PeopleSelected: React.FC<PeopleSelectedProps> = ({ peopleUrl }) => {
 
   
   useEffect(() => {
-    if (peopleUrl) {
+    if (peopleUrlSelec) {
       fetchPeople();
     }
-  }, [peopleUrl]);
+  }, [peopleUrlSelec]);
 
   return (
-    <div>
+    <>
       {
-        peopleUrl
+        peopleUrlSelec
           ? isLoading
             ? <>
                 <Loader />
@@ -58,7 +58,7 @@ const PeopleSelected: React.FC<PeopleSelectedProps> = ({ peopleUrl }) => {
             : <PersonaResultado data={data} />
           : <></>
       }
-    </div>
+    </>
   );
 }
 

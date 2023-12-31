@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { Outlet, useOutletContext } from "react-router-dom";
 import Header from '../moleculas/header';
 import Peoples from '../templates/people';
 import PeopleSelected from '../templates/people_selected';
+
+type ContextType = { peopleUrlSelec: string | null };
 
 function Home() {
     
@@ -18,12 +21,17 @@ function Home() {
                 <div className="col-12 col-md-4 swapi-col">
                     <Peoples onclickCharacter={onSelectCharacter}/>
                 </div>
-                <div className="col-12 col-md-8 swapi-col">
-                    <PeopleSelected peopleUrl={peopleUrlSelec}/>
-                </div>
+                
+                <Outlet context={{ peopleUrlSelec } satisfies ContextType}></Outlet>
             </div>
         </div>
     );
 }
 
 export default Home;
+
+
+
+export function UserPeopleUrlSelect() {
+    return useOutletContext<ContextType>();
+}
