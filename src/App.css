@@ -39,6 +39,7 @@
 
 .swapi-col {
   padding: 1em;
+  border-left: 1px solid #00000040;
 }
 
 #loadingSpinner {
@@ -108,4 +109,16 @@
   color: #828282;
   font-size: 14px;
   font-weight: 400;
+}
+
+.sw-color-text {
+  color: #828282;
+}
+
+.sw-color-title {
+  color: #333333;
+}
+
+.sw-border-bottom {
+  border-bottom: 1px solid #00000040;
 }

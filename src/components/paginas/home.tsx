@@ -7,7 +7,7 @@ function Home() {
     
     const [peopleUrlSelec, setPeopleUrlSelec] = useState("");
 
-    const onSelectCharacter = (value) => {
+    const onSelectCharacter = (value: string) => {
         setPeopleUrlSelec(value);
     }
 
