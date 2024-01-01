@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useOutletContext } from "react-router-dom";
 import axios from 'axios';
 import Loader from '../atomos/loader';
 import PersonaResultado from '../organismos/persona_resultado';
@@ -52,7 +51,9 @@ const PeopleSelected: React.FC = () => {
         peopleUrlSelec
           ? isLoading
             ? <>
-                <Loader />
+                <div className="min-vh-100">
+                  <Loader />
+                </div>
                 <LoaderSpinner />
               </>
             : <PersonaResultado data={data} />

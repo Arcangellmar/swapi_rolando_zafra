@@ -5,7 +5,7 @@ import PersonaBuscador from '../organismos/persona_buscador';
 import PersonaProps from '../../interfaces/persona_props';
 
 interface PeoplesProps {
-  onclickCharacter: (url: string) => void;
+  onclickCharacter: (url: string, namePersonajeSelected: string) => void;
 }
 
 const Peoples: React.FC<PeoplesProps> = ({ onclickCharacter }) => {

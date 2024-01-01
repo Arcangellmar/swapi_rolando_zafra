@@ -1,24 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet, useOutletContext } from "react-router-dom";
 import Header from '../moleculas/header';
 import Peoples from '../templates/people';
-import PeopleSelected from '../templates/people_selected';
 
 type ContextType = { peopleUrlSelec: string | null };
 
 function Home() {
     
     const [peopleUrlSelec, setPeopleUrlSelec] = useState("");
+    const [peopleNameSelec, setPeopleNameSelec] = useState("");
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-    const onSelectCharacter = (value: string) => {
+    const onSelectCharacter = (value: string, namePersonajeSelected: string) => {
         setPeopleUrlSelec(value);
+        setPeopleNameSelec(namePersonajeSelected);
     }
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const getTitle = () => windowWidth < 768 ? 'People of Star Wars' : 'Ravn Star Wars Registry';
 
     return (
         <div className="container-fluid min-vh-100">
-            <Header title="Ravn Star Wars Registry"/>
-            <div className="row">
-                <div className="col-12 col-md-4 swapi-col">
+            <Header title={getTitle()} onBackButton={setPeopleUrlSelec} peopleNameSelec={peopleNameSelec} clearNamePeopleSelected={setPeopleNameSelec}/>
+            <div className="row pt-5">
+                <div className="col-12 col-md-4 sw-col sw-border-right">
                     <Peoples onclickCharacter={onSelectCharacter}/>
                 </div>
                 
@@ -31,7 +47,4 @@ function Home() {
 export default Home;
 
 
-
-export function UserPeopleUrlSelect() {
-    return useOutletContext<ContextType>();
-}
+export const UserPeopleUrlSelect = () => useOutletContext<ContextType>();
