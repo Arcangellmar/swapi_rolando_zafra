@@ -1,6 +1,6 @@
 import loader from '../../img/loader.png';
 
-function Loader() {
+function LoaderIndicator() {
     return (
         <div className='text-center m-3'>
             <img src={loader} className="loader-logo" alt="cargando" />
@@ -9,4 +9,4 @@ function Loader() {
     );
 }
 
-export default Loader;
+export default LoaderIndicator;

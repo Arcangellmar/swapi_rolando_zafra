@@ -1,8 +1,8 @@
-interface PersonaResultadoHeadProps {
+interface SectionHeaderProps {
     title: string;
 }
 
-const PersonaResultadoHead: React.FC<PersonaResultadoHeadProps> = ({ title }) => {
+const SectionHeader: React.FC<SectionHeaderProps> = ({ title }) => {
     return(
         <div className="col-12">
             <p className="fw-bold sw-persona-cell-title">{title}</p>
@@ -10,4 +10,4 @@ const PersonaResultadoHead: React.FC<PersonaResultadoHeadProps> = ({ title }) =>
     );
 }
 
-export default PersonaResultadoHead;
+export default SectionHeader;

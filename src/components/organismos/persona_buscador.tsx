@@ -1,5 +1,5 @@
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "../atomos/loader";
+import LoaderIndicator from "../atomos/loader_indicator";
 import PersonaCell from "../moleculas/persona_cell";
 import PersonaBuscadorProps from "../../interfaces/persona_buscador_props";
 
@@ -8,7 +8,7 @@ const PersonaBuscador: React.FC<PersonaBuscadorProps> = ({ peoples, onclickChara
         <InfiniteScroll
             className="min-vh-100"
             dataLength={ peoples.length }
-            loader= { <Loader /> }
+            loader= { <LoaderIndicator /> }
             hasMore={hasMore}
             next={next}
         >

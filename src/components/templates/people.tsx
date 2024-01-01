@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios';
-import ErrorText from '../atomos/error_text';
+import NoticeHeader from '../atomos/notice_header';
 import PersonaBuscador from '../organismos/persona_buscador';
 import PersonaProps from '../../interfaces/persona_props';
 
@@ -71,7 +71,7 @@ const Peoples: React.FC<PeoplesProps> = ({ onclickCharacter }) => {
         <>
             {
               errorApi
-              ? <ErrorText />
+              ? <NoticeHeader />
               : <PersonaBuscador peoples={peoples} onclickCharacter={onclickCharacter} next={fetchMore} hasMore={hasMore} />
             }
         </>

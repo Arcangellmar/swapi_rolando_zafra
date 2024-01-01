@@ -7,12 +7,12 @@ function capitalizeString(str: string): string {
     return "";
 }
 
-interface PersonaResultadoCellProps {
+interface DataCellProps {
     text: string;
     title: string;
 }
 
-const PersonaResultadoCell: React.FC<PersonaResultadoCellProps> = ({ title, text }) => {
+const DataCell: React.FC<DataCellProps> = ({ title, text }) => {
     return (
         <div className="col-12">
             <div className="d-flex justify-content-between sw-border-bottom py-3">
@@ -24,4 +24,4 @@ const PersonaResultadoCell: React.FC<PersonaResultadoCellProps> = ({ title, text
 };
 
 
-export default PersonaResultadoCell;
+export default DataCell;

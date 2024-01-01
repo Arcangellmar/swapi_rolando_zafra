@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import Loader from '../atomos/loader';
+import LoaderIndicator from '../atomos/loader_indicator';
 import PersonaResultado from '../organismos/persona_resultado';
 import LoaderSpinner from '../atomos/loader_spinner';
 import { UserPeopleUrlSelect } from '../paginas/home';
@@ -56,7 +56,7 @@ const PeopleSelected: React.FC = () => {
             ? <>
 				{/* Se muestra un loader como elemento y un spinner como background para que no seleccione mas de un personaje */}
                 <div className="min-vh-100">
-                  <Loader />
+                  <LoaderIndicator />
                 </div>
                 <LoaderSpinner />
               </>
