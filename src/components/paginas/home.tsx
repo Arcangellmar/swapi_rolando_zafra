@@ -7,9 +7,9 @@ type ContextType = { peopleUrlSelec: string | null };
 
 function Home() {
     
-    const [peopleUrlSelec, setPeopleUrlSelec] = useState("");
-    const [peopleNameSelec, setPeopleNameSelec] = useState("");
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [peopleUrlSelec, setPeopleUrlSelec] = useState(""); // Almacena el url del personaje seleccionado
+    const [peopleNameSelec, setPeopleNameSelec] = useState(""); // Almacena el nombre del personaje seleccionado
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth); // Se utilizara para saber el ancho de la pantalla y asi mostrar el titulo de la pagina
 
     const onSelectCharacter = (value: string, namePersonajeSelected: string) => {
         setPeopleUrlSelec(value);
@@ -17,9 +17,7 @@ function Home() {
     }
 
     useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
+        const handleResize = () => setWindowWidth(window.innerWidth);
 
         window.addEventListener('resize', handleResize);
 
@@ -32,12 +30,13 @@ function Home() {
 
     return (
         <div className="container-fluid min-vh-100">
-            <Header title={getTitle()} onBackButton={setPeopleUrlSelec} peopleNameSelec={peopleNameSelec} clearNamePeopleSelected={setPeopleNameSelec}/>
+            <Header titulo={getTitle()} onBackButton={setPeopleUrlSelec} nombrePersonajeSelecionado={peopleNameSelec} clearNamePeopleSelected={setPeopleNameSelec}/>
             <div className="row pt-5">
                 <div className="col-12 col-md-4 sw-col sw-border-right">
                     <Peoples onclickCharacter={onSelectCharacter}/>
                 </div>
                 
+                {/* Se pasara el url del personaje seleccionado por contexto */}
                 <Outlet context={{ peopleUrlSelec } satisfies ContextType}></Outlet>
             </div>
         </div>

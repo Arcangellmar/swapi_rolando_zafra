@@ -12,7 +12,7 @@ interface PersonaResultadoCellProps {
     title: string;
 }
 
-const PersonaResultadoCell: React.FC<PersonaResultadoCellProps> = ({ text, title }) => {
+const PersonaResultadoCell: React.FC<PersonaResultadoCellProps> = ({ title, text }) => {
     return (
         <div className="col-12">
             <div className="d-flex justify-content-between sw-border-bottom py-3">

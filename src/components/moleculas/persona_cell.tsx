@@ -5,13 +5,12 @@ interface PersonaCellProps {
     title: string;
     subtitle: string;
     onClick: () => void;
-    url: string;
+    urlPersonaje: string;
 }
 
-const PersonaCell: React.FC<PersonaCellProps> = ({ title, subtitle, onClick, url }) => {
+const PersonaCell: React.FC<PersonaCellProps> = ({ title, subtitle, onClick, urlPersonaje }) => {
     return (
-        <Link to={`/persona/${encodeURIComponent(url)}`} className="min-vh-100 text-decoration-none">
-            
+        <Link to={`/persona/${encodeURIComponent(urlPersonaje)}`} className="min-vh-100 text-decoration-none">
             <div className="sw-persona-cell-container" onClick={onClick}>
                 <div className="w-100">
                     <p className="m-0 sw-persona-cell-title">{title}</p>

@@ -6,11 +6,13 @@ import LoaderSpinner from '../atomos/loader_spinner';
 import { UserPeopleUrlSelect } from '../paginas/home';
 
 const PeopleSelected: React.FC = () => {
-  const {peopleUrlSelec} = UserPeopleUrlSelect();
 
-  const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  const {peopleUrlSelec} = UserPeopleUrlSelect(); // Se obtiene el valor de la url seleccionada por contexto
 
+  const [data, setData] = useState(null); // Se guarda la data de la persona seleccionada
+  const [isLoading, setLoading] = useState(false); // Se guarda el estado (esta cargando o ya se obtuvo los datos)
+
+  // Obtiene los datos de la persona seleccionada
   const fetchPeople = async () => {
     try{
       if (peopleUrlSelec != undefined) {
@@ -21,6 +23,7 @@ const PeopleSelected: React.FC = () => {
 
         newData.vehiclesResponse = [];
 
+		// Se espera mas, pero se obtiene la data de los vehiculos
         for (const vehicle of newData.vehicles) {
           const vehicleResponse = await axios.get(vehicle);
           
@@ -38,7 +41,7 @@ const PeopleSelected: React.FC = () => {
     setLoading(false);
   };
 
-  
+  // Si se selecciono una url de persona, obtiene los datos del personaje
   useEffect(() => {
     if (peopleUrlSelec) {
       fetchPeople();
@@ -51,6 +54,7 @@ const PeopleSelected: React.FC = () => {
         peopleUrlSelec
           ? isLoading
             ? <>
+				{/* Se muestra un loader como elemento y un spinner como background para que no seleccione mas de un personaje */}
                 <div className="min-vh-100">
                   <Loader />
                 </div>

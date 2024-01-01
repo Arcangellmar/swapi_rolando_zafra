@@ -7,10 +7,8 @@ const PersonaBuscador: React.FC<PersonaBuscadorProps> = ({ peoples, onclickChara
     return (
         <InfiniteScroll
             className="min-vh-100"
-            dataLength={peoples.length}
-            loader= {
-                <Loader />
-            }
+            dataLength={ peoples.length }
+            loader= { <Loader /> }
             hasMore={hasMore}
             next={next}
         >
@@ -21,7 +19,7 @@ const PersonaBuscador: React.FC<PersonaBuscadorProps> = ({ peoples, onclickChara
                         title={character.name}
                         subtitle={(character.speciesResponse == null ? "Sin especie" : character.speciesResponse.data.name) + " from " + character.planetResponse.data.name}
                         onClick={() => onclickCharacter(character.url, character.name)}
-                        url={character.url}
+                        urlPersonaje={character.url}
                     />
                 ))
             }
