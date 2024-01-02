@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Outlet, useOutletContext } from "react-router-dom";
-import Header from '../moleculas/header';
-import Peoples from '../templates/people';
+import Header from '../moleculas/header/header';
+import Peoples from '../templates/people/people';
 
 type ContextType = { peopleUrlSelec: string | null };
 

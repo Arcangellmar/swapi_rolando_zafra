@@ -2,7 +2,7 @@ import { RouteObject, useRoutes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from './components/paginas/home';
-import PeopleSelected from "./components/templates/people_selected";
+import PeopleSelected from "./components/templates/people_selected/people_selected";
 
 function App() {
   

@@ -1,4 +1,4 @@
-import loader from '../../img/loader.png';
+import loader from '../../../img/loader.png';
 
 function LoaderIndicator() {
     return (

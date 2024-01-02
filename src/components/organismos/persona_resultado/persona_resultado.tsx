@@ -1,7 +1,7 @@
-import PersonaResultadoProps from "../../interfaces/persona_resultado_props";
-import LoaderIndicator from "../atomos/loader_indicator";
-import DataCell from "../moleculas/data_cell";
-import SectionHeader from "../moleculas/section_header";
+import PersonaResultadoProps from "../../../interfaces/persona_resultado_props";
+import LoaderIndicator from "../../atomos/loader_indicator/loader_indicator";
+import DataCell from "../../moleculas/data_cell/data_cell";
+import SectionHeader from "../../moleculas/section_header/section_header";
 
 const PersonaResultado: React.FC<PersonaResultadoProps> = ({ data }) => {
 

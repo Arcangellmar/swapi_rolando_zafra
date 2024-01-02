@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import arrow from '../../img/arrow.png';
+import arrow from '../../../img/arrow.png';
 
 interface PersonaCellProps {
     title: string;

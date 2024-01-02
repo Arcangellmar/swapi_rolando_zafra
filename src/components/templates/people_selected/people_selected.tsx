@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import LoaderIndicator from '../atomos/loader_indicator';
-import PersonaResultado from '../organismos/persona_resultado';
-import LoaderSpinner from '../atomos/loader_spinner';
-import { UserPeopleUrlSelect } from '../paginas/home';
+import LoaderIndicator from '../../atomos/loader_indicator/loader_indicator';
+import PersonaResultado from '../../organismos/persona_resultado/persona_resultado';
+import LoaderSpinner from '../../atomos/loader_spinner/loader_spinner';
+import { UserPeopleUrlSelect } from '../../paginas/home';
 
 const PeopleSelected: React.FC = () => {
 

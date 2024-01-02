@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import backButton from '../../img/back_button.png';
+import backButton from '../../../img/back_button.png';
 import { Link } from 'react-router-dom';
 
 interface HeaderProps {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios';
-import NoticeHeader from '../atomos/notice_header';
-import PersonaBuscador from '../organismos/persona_buscador';
-import PersonaProps from '../../interfaces/persona_props';
+import NoticeHeader from '../../atomos/notice_header/notice_header';
+import PersonaBuscador from '../../organismos/persona_buscador/persona_buscador';
+import PersonaProps from '../../../interfaces/persona_props';
 
 interface PeoplesProps {
   onclickCharacter: (url: string, namePersonajeSelected: string) => void;
