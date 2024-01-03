@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
 import LoaderIndicator from '../../atomos/loader_indicator/loader_indicator';
 import PersonaResultado from '../../organismos/persona_resultado/persona_resultado';
 import LoaderSpinner from '../../atomos/loader_spinner/loader_spinner';
 import { UserPeopleUrlSelect } from '../../paginas/home';
+import { getUrlAxios } from '../../../api/api';
 
 const PeopleSelected: React.FC = () => {
 
@@ -18,14 +18,14 @@ const PeopleSelected: React.FC = () => {
       if (peopleUrlSelec != undefined) {
         setLoading(true);
 
-        const response = await axios.get(decodeURIComponent(peopleUrlSelec));
+        const response = await getUrlAxios(decodeURIComponent(peopleUrlSelec));
         const newData = response.data;
 
         newData.vehiclesResponse = [];
 
 		// Se espera mas, pero se obtiene la data de los vehiculos
         for (const vehicle of newData.vehicles) {
-          const vehicleResponse = await axios.get(vehicle);
+          const vehicleResponse = await getUrlAxios(vehicle);
           
           newData.vehiclesResponse.push(vehicleResponse.data);
         }

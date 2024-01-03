@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
-import axios from 'axios';
 import NoticeHeader from '../../atomos/notice_header/notice_header';
 import PersonaBuscador from '../../organismos/persona_buscador/persona_buscador';
 import PersonaProps from '../../../interfaces/persona_props';
+import { getUrlAxios } from '../../../api/api';
 
 interface PeoplesProps {
   onclickCharacter: (url: string, namePersonajeSelected: string) => void;
@@ -21,19 +21,19 @@ const Peoples: React.FC<PeoplesProps> = ({ onclickCharacter }) => {
     const fetchCharacters = async () => {
 		try {
 			setLoading(true);
-			const response = await axios.get(`https://swapi.dev/api/people/?page=${page}`);
+			const response = await getUrlAxios(`https://swapi.dev/api/people/?page=${page}`);
 			const newData = response.data.results;
 
 			const newDataModify : PersonaProps[] = [];
 
 			// Demora mas pero obtiene toda la data que se necesita de frente
 			for (const person of newData) {
-				const planetResponse = await axios.get(person.homeworld);
+				const planetResponse = await getUrlAxios(person.homeworld);
 
 				person.planetResponse = planetResponse;
 
 				// Por defecto humano
-				const specieResponse = await axios.get(person.species[0] || "https://swapi.dev/api/species/1/");
+				const specieResponse = await getUrlAxios(person.species[0] || "https://swapi.dev/api/species/1/");
 				person.speciesResponse = specieResponse;
 
 				newDataModify.push(person);
